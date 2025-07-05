@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import mongoose, { mongo } from "mongoose";
 import morgan from "morgan";
 
+import routes from "./routes/index.js";
+
 dotenv.config();
 
 const app = express();
@@ -30,6 +32,8 @@ const PORT = process.env.PORT || 5000;
 app.get("/", async (req, res) => {
   res.status(200).json({ message: "Welcome to TaskHub API" });
 });
+
+app.use("/api-v1", routes);
 
 // error middleware
 app.use((err, req, res, next) => {
